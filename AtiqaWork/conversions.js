@@ -14,7 +14,7 @@ let firstName = "sara";
 let Description = `${firstName} is ${age} years ago.`;
 console.log(Description);
 
-let agestring ="41";
+let agestring ="41a";
 let ageNumber = Number(agestring);
 console.log(typeof (ageNumber));
 
