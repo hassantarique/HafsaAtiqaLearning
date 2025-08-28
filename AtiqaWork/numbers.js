@@ -13,3 +13,5 @@ console.log(`USA:${num2.toLocaleString("en-US")}`);
 let salary =1_000_000;
 let monthlySalary= salary/12;
 console.log(`monthly salary: ${monthlySalary.toFixed(3)}`);
+console.log(`salary:${salary}`);
+
