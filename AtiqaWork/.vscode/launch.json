@@ -12,7 +12,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\loops.js"
+            "console": "integratedTerminal",
+            "program": "${workspaceFolder}\\lop.js"
         }
     ]
 }

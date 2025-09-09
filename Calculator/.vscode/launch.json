@@ -4,8 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        A
-
 
         {
             "type": "node",
@@ -14,8 +12,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "console":"integrated terminal",
-            "program": "${workspaceFolder}//ProjectWork//AtiqaModule5//mainfile.js"
+            "console":"integratedTerminal"
+            "program": "${workspaceFolder}\\Atiqa\\rw.js"
         }
     ]
 }
