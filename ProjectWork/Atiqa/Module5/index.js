@@ -1,61 +1,106 @@
+
 import createPrompt from 'prompt-sync';
 let prompt = createPrompt();
 
-let employee = {};
-let firstName = prompt("firstName:");
-if(!firstName){
-    console.error(`invalidfirstName`);
-    process.exit(1);
-}
-//employee.firstName =firstName;
+let totalEmployees = [];
+ while(true){let employee = {}
+ let firstName = prompt("firstName(Or type no):");
+  if(!firstName){
+  console.error(`invalidfirstName and Re-enter the correct name`);
+  continue;
+  }
+  if (firstName.toLowerCase() === "no" ){
+    break;
+  }
 
-let lastName = prompt("lastName:");
-if(!lastName){
-    console.error(`invalidlastName`);
-    process.exit(1);
-}
-employee.lastName =lastName;
+  employee.firstName = firstName;
 
-let startDateYear = prompt ("employee start year(1993-2023):");
-startDateYear = Number(startDateYear);
-if(!Number.isInteger(startDateYear)){
-    console.error("enter a valid start date year");
-    process.exit(1);
-}
-if (startDateYear<1990 || startDateYear>2023){
-    console.error(`Ankhain khol k enter karain`);
-    process.exit(1);
-}
+  while(true){
+    let lastName = prompt("lastName (or type no):");
+          if(!lastName){
+          console.error(`invalidlastName Or Re-enter Correct Last Name`);
+          continue;
+          }
+          if (lastName.toLowerCase() === "no"){
+          break;
+          }
+        
+      
+          employee.lastName =lastName;
 
-
-let startDateMonth = prompt ("employee start Month(1-12):");
-startDateMonth = Number(startDateMonth);
-if(!Number.isInteger(startDateMonth)){
-    console.error("enter a valid start date Month");
-    process.exit(1);
-}
-if (startDateMonth<1 || startDateMonth>12){
-    console.error(`again Ankhain khol k enter karain`);
-    process.exit(1);
-}
-
-let startDateDay = prompt ("employee start Day(1-31):");
-startDateDay = Number(startDateDay);
-if(!Number.isInteger(startDateDay)){
-    console.error("enter a valid start date Day");
-    process.exit(1);
-}
-if (startDateDay<1 || startDateDay>31){
-    console.error(`Maheenay may 31 din hotay hain bus`);
-    process.exit(1);
-}
-//employee.startDate = new Date (`${startDateYear}-${startDateMonth}-${startDateDay}`);
-employee.startDate =new Date (startDateYear,startDateMonth-1,startDateDay);
-
-//let isActive = prompt ("is employee active(yes or no):")
-
-const json = JSON.stringify(employee,null,2);
-console.log(json);
+  while(true){
+    let Department = prompt ("Department (or type no):");
+        if (!Department){
+        console.error(`invalid Department or type again`);
+        continue;
+        }
+         if (Department.toLowerCase() === "no"){
+        break;
+        }
 
 
+
+//  let monthOfBirth = prompt ("employee Birth Month(1-12):");
+//  monthOfBirth = Number(monthOfBirth);
+//  if(!Number.isInteger(monthOfBirth)){
+//     console.error("enter a valid Month of Birth");
+//     process.exit(1);
+//    }
+//  if (monthOfBirth<1 || monthOfBirth>12){
+//      console.error(`enter month of birth between 1 and 12`);
+//      process.exit(1);
+//      }
+
+//  let dayOfBirth = prompt ("employee start Day(1-31):");
+//   dayOfBirth = Number(dayOfBirth);
+//  if(!Number.isInteger(dayOfBirth)){
+//      console.error("enter a valid start date Day");
+//      process.exit(1);
+//      }
+//  if (dayOfBirth<1 || dayOfBirth>31){
+//      console.error(`Date must be entered between 1 and 31`);
+//      process.exit(1);
+//      }
+      
+//  employee.dateOfBirth =  new Date (yearOfBirth, monthOfBirth-1, dayOfBirth);
+
+    while(true){
+            let yearsOfEmployment = prompt ("years of employment(or no):")
+             if (yearsOfEmployment.toLowerCase()==="no"){
+            break;
+             }
+
+            yearsOfEmployment=Number(yearsOfEmployment);
+            if(!Number.isInteger(yearsOfEmployment)){
+            console.error('invalid year of employment or type again');
+            continue;
+
+            }
+
+     employee.yearsOfEmployment = yearsOfEmployment;
+     break;
+    }
+        
+     employee.Department = Department;
+     break;
+     }
+
+     employee.lastName =lastName;
+     break;
+    }
+  
+    totalEmployees.push(employee);
+
+   //const json = JSON.stringify(employee,null,2);
+   //console.log(json);
+   
+ 
+   //console.log(totalEmployees);
+  }
+   
+
+// // //let isActive =abc
+// //  prompt ("is employee active(yes or no):")
+// totalEmployees.push(employee);
+// //console.log(totalEmployees);
 
