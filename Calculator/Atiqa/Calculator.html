@@ -106,12 +106,129 @@
 	<!-- ======== Your JavaScript Section ========= -->
 	<script>
 		// Example: handle button "1"
-		const display = document.getElementById("display");
-		const oneButton = document.getElementById("btn-1");
+		//const Button = document.getElementById("x");
+		//Button.addEventListener("click", function () {
+			//display.value += "x";
+		//});
 
-		oneButton.addEventListener("click", function () {
-			display.value += "1";
+	
+
+
+
+		 const display = document.getElementById("display");
+		 const oneButton = document.getElementById("btn-1");
+		 const twoButton = document.getElementById("btn-2");
+		 const threeButton = document.getElementById("btn-3");
+		 const fourButton = document.getElementById("btn-4");
+		 const fiveButton = document.getElementById("btn-5");
+		 const sixButton = document.getElementById("btn-6");
+		 const sevenButton = document.getElementById("btn-7");
+		 const eightButton = document.getElementById("btn-8");
+		 const nineButton = document.getElementById("btn-9");
+		 const zeroButton = document.getElementById("btn-0");
+		 const plusButton = document.getElementById("btn-plus");
+		 const minusButton = document.getElementById("btn-minus");
+		 const multiplyButton = document.getElementById("btn-multiply");
+		 const divideButton = document.getElementById("btn-divide");
+		 const clearButton = document.getElementById("btn-clear");
+		 const dotButton = document.getElementById("btn-dot");
+		 const equalsButton = document.getElementById("btn-equals");
+
+		 let firstNumber;
+		 let secondNumber;
+		 let operator;
+
+
+		 oneButton.addEventListener("click", function () {
+		 	display.value += "1";
+		 });
+
+		 twoButton.addEventListener("click", function () {
+		 	display.value += "2";
 		});
-	</script>
+
+		 threeButton.addEventListener("click", function () {
+			display.value += "3";
+		 });
+
+		 fourButton.addEventListener("click", function () {
+			display.value += "4";
+		 });
+
+		 fiveButton.addEventListener("click", function () {
+		 	display.value += "5";
+		 });
+
+		 sixButton.addEventListener("click", function () {
+			display.value += "6";
+		});
+		 sevenButton.addEventListener("click", function () {
+		 	display.value += "7";
+		 });
+
+		 eightButton.addEventListener("click", function () {
+		 	display.value += "8";
+		});
+
+		 nineButton.addEventListener("click", function(){
+		 	display.value += "9";
+		 })
+
+		 zeroButton.addEventListener("click", function(){
+			display.value += "0";
+		 })
+
+		plusButton.addEventListener("click", function(){
+			firstNumber = Number(display.value);
+			operator = "+";
+
+			display.value="";
+
+			// display.value += "+";
+		});
+
+		minusButton.addEventListener("click", function(){
+			firstNumber = Number(display.value);
+			operator = "-";
+
+			display.value="";
+
+		})
+		multiplyButton.addEventListener("click", function(){
+			firstNumber = Number(display.value);
+			operator = "*";
+
+			display.value="";
+		})
+		divideButton.addEventListener("click", function(){
+			firstNumber = Number(display.value);
+			operator = "/";
+
+			display.value="";
+		 
+		})
+		clearButton.addEventListener("click", function(){
+		 display.value = "";
+		})
+		dotButton.addEventListener("click", function(){
+		 display.value += ".";
+		})
+		equalsButton.addEventListener("click", function(){
+		 secondNumber = Number(display.value);
+		 if (operator === "+"){
+			display.value = firstNumber+secondNumber;
+		}
+		else if (operator === "-"){
+			display.value = firstNumber-secondNumber;
+		}
+		else if (operator === "*"){
+			display.value = firstNumber*secondNumber;
+		}
+		else if (operator === "/"){
+			display.value = firstNumber/secondNumber
+		}
+	} );
+
+</script> 
 </body>
 </html>
