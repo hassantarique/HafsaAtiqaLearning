@@ -134,43 +134,57 @@
 		 const dotButton = document.getElementById("btn-dot");
 		 const equalsButton = document.getElementById("btn-equals");
 
-		 let firstNumber;
-		 let secondNumber;
+		 //let firstNumber;
+		 //let secondNumber;
+		 //let latestNumber;
 		 let operator;
+		 let result;
+		 let calculator = [];
+
+		 let lastDisplayIsResult = true;
 
 
 		 oneButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "1";
 		 });
 
 		 twoButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "2";
 		});
 
 		 threeButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 			display.value += "3";
 		 });
 
 		 fourButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 			display.value += "4";
 		 });
 
 		 fiveButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "5";
 		 });
 
 		 sixButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 			display.value += "6";
 		});
 		 sevenButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "7";
 		 });
 
 		 eightButton.addEventListener("click", function () {
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "8";
 		});
 
 		 nineButton.addEventListener("click", function(){
+			clearDisplayIfLastDisplayIsResult();
 		 	display.value += "9";
 		 })
 
@@ -179,29 +193,167 @@
 		 })
 
 		plusButton.addEventListener("click", function(){
-			firstNumber = Number(display.value);
-			operator = "+";
 
-			display.value="";
 
-			// display.value += "+";
+
+			
+
+				operator = "+";
+				//if (lastDisplayIsResult){calculator.push(result);
+				//calculator.push(operator);
+				
+				//}
+
+				//calculator.push(display.value);
+				if (lastDisplayIsResult){
+					calculator.push(result);
+					display.value=""
+				}
+				else{calculator.push(operator)};
+				
+				//};
+				//operator = "+";
+				display.value = "";
+
+				// if (isNaN(Number(calculator[calculator.length-1]))) {
+				// calculator.push(display.value);
+				// calculator.push("+");
+				// }
+				// else
+				// {
+				// calculator.push("+");
+				// calculator.push(display.value);
+				// calculator.push("+");
+				// }
+				// display.value="";
+
+			if (calculator.length > 3) {
+				let firstOperand = Number(calculator[calculator.length-2]);
+				let operator = calculator[calculator.length-3];
+				let secondOperand = Number(calculator[calculator.length-4]);
+
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+				    //calculator.push(display.value);
+					
+					// calculator.push(display.value);
+				}
+				else if (operator === "-") {
+					display.value = firstOperand - secondOperand;
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+				}
+				else if (operator === "/"){
+					display.value = firstOperand / secondOperand;
+				}
+			}
 		});
 
+		function addResultIfLastDisplayIsResult( ){
+			if (lastDisplayIsResult){calculator.push(result);
+				calculator.push(operator);
+				}
+			}	
+
+		function clearDisplayIfLastDisplayIsResult() {
+			if (lastDisplayIsResult) {
+				calculator.push(result);
+				display.value  ="";
+			}
+		}
+			  		
+
+
 		minusButton.addEventListener("click", function(){
-			firstNumber = Number(display.value);
 			operator = "-";
+			//if (lastDisplayIsResult){calculator.push(result);
+				//calculator.push(operator);
+				//}
 
-			display.value="";
+				 calculator.push(display.value);
+				if (lastDisplayIsResult){
+					calculator.push(result);
+					display.value = "";
 
-		})
+				}
+				else{
+					calculator.push(operator);
+				
+				};
+				display.value = "";
+			//calculator.push(display.value);
+			//operator = "-";
+			//calculator.push(operator);
+
+			if (calculator.length >= 3){
+				let firstOperand = Number(calculator[calculator.length-2]);
+				let operator = calculator[calculator.length-3];
+				let secondOperand = Number(calculator[calculator.length-4]);
+			if (operator === "-"){
+				display.value = secondOperand - firstOperand;
+				result = display.value ;
+				//calculator.push(result);
+			}
+			else if(operator === "+"){
+				display.value = firstOperand + secondOperand;
+			}
+			else if(operator === "*"){
+				display.value = firstOperand * secondOperand;
+				display.value = firstOperand * secondOperand;
+				result = display.value ;
+				calculator.push(result);
+				display.value="";
+			 }
+			else if(operator === "/"){
+				display.value = secondOperand / firstOperand;
+			}
+			}
+			//clearDisplayIfLastDisplayIsResult() 
+		});
+	
 		multiplyButton.addEventListener("click", function(){
-			firstNumber = Number(display.value);
+			if (isNaN(Number(calculator[calculator.length-1]))) {
+				calculator.push(display.value);
+				calculator.push("*");
+			}
+			else
+			{
+				calculator.push("*");
+				calculator.push(display.value);
+				calculator.push("*");
+			};
+			//calculator.push(display.value);
 			operator = "*";
-
+			//calculator.push(operator);
 			display.value="";
-		})
+
+			if (calculator.length >= 3){
+				let firstOperand = Number(calculator[calculator.length-2]);
+				let operator = calculator[calculator.length-3];
+				let secondOperand = Number(calculator[calculator.length-4]);
+			if (operator === "-"){
+				display.value = secondOperand - firstOperand;
+				
+			}
+			else if(operator === "+"){
+				display.value = firstOperand + secondOperand;
+			}
+			else if(operator === "*"){
+				display.value = firstOperand * secondOperand;
+				result = display.value ;
+				calculator.push(result);
+				display.value="";
+			 }
+			else if(operator === "/"){
+				display.value = secondOperand / firstOperand;
+			}
+			}
+			//clearDisplayIfLastDisplayIsResult() 
+		});
 		divideButton.addEventListener("click", function(){
-			firstNumber = Number(display.value);
+			latestNumber = Number(display.value);
 			operator = "/";
 
 			display.value="";
@@ -214,20 +366,33 @@
 		 display.value += ".";
 		})
 		equalsButton.addEventListener("click", function(){
-		 secondNumber = Number(display.value);
-		 if (operator === "+"){
+		 latestNumber = Number(display.value);
+		
+
+		if (operator === "+"){
+			//secondNumber = Number(display.value);
+			//calculator.push(display.value)
 			display.value = firstNumber+secondNumber;
+			//display.value = result
+
+			//calculator.push(display.value);
 		}
-		else if (operator === "-"){
-			display.value = firstNumber-secondNumber;
-		}
-		else if (operator === "*"){
-			display.value = firstNumber*secondNumber;
-		}
+	 	else if (operator === "-"){
+	 		display.value = firstNumber-secondNumber;
+			calculator.push(diplay.value);
+	 	}
+		 	else if (operator === "*"){
+	 		display.value = firstNumber*secondNumber;
+			calculator.push(display.value);
+	 	}
 		else if (operator === "/"){
-			display.value = firstNumber/secondNumber
-		}
-	} );
+	 		display.value = firstNumber/secondNumber;
+			calculator.push(display.value);
+	 	}
+	    } 
+	)
+	
+		
 
 </script> 
 </body>
