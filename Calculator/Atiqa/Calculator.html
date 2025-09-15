@@ -111,10 +111,6 @@
 			//display.value += "x";
 		//});
 
-	
-
-
-
 		 const display = document.getElementById("display");
 		 const oneButton = document.getElementById("btn-1");
 		 const twoButton = document.getElementById("btn-2");
@@ -141,79 +137,147 @@
 		 let result;
 		 let calculator = [];
 
-		 let lastDisplayIsResult = true;
+		 let lastDisplayIsResult= false;
+		 let IsresultAfterEqual = false;
 
 
-		 oneButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		oneButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+				display.value="";
+				lastDisplayIsResult = false ;
+			}
 		 	display.value += "1";
 		 });
 
-		 twoButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		twoButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 		 	display.value += "2";
 		});
 
-		 threeButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		threeButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
+			
 			display.value += "3";
-		 });
+		});
 
-		 fourButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		fourButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 			display.value += "4";
-		 });
+		});
 
-		 fiveButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		fiveButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 		 	display.value += "5";
-		 });
+		});
 
-		 sixButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		sixButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 			display.value += "6";
 		});
 		 sevenButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 		 	display.value += "7";
 		 });
 
-		 eightButton.addEventListener("click", function () {
-			clearDisplayIfLastDisplayIsResult();
+		eightButton.addEventListener("click", function () {
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 		 	display.value += "8";
 		});
 
-		 nineButton.addEventListener("click", function(){
-			clearDisplayIfLastDisplayIsResult();
+		nineButton.addEventListener("click", function(){
+			//clearDisplayIfLastDisplayIsResult();
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 		 	display.value += "9";
-		 })
+		})
 
-		 zeroButton.addEventListener("click", function(){
+		zeroButton.addEventListener("click", function(){
+			if (lastDisplayIsResult){
+			display.value="";
+			lastDisplayIsResult = false ;
+			}
 			display.value += "0";
+		})
+
+		clearButton.addEventListener("click", function(){
+		  display.value= "";
+		  calculator =[];
+		})
+
+		dotButton.addEventListener("click", function(){
+		 display.value+= "."; 
 		 })
 
 		plusButton.addEventListener("click", function(){
 
-
-
+			if (IsresultAfterEqual){
+				display.value= result;
+				display.value= ""
+				IsresultAfterEqual = false ;
+				}
+			else if  (lastDisplayIsResult){
+				display.value="";
+				lastDisplayIsResult = false ;
+			}
+			//else if (isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
+			else{calculator.push(display.value);
+			    display.value = ""
+			}
+			//else {
+				//display.value = "syntax error";
+				
+			//}
 			
-
-				operator = "+";
+		
+			operator = "+";
 				//if (lastDisplayIsResult){calculator.push(result);
 				//calculator.push(operator);
 				
 				//}
 
 				//calculator.push(display.value);
-				if (lastDisplayIsResult){
-					calculator.push(result);
-					display.value=""
-				}
-				else{calculator.push(operator)};
+
+
+				//if (lastDisplayIsResult){
+					//display.value="";
+					//lastDisplayIsResult = false ;
+				//}
+				//else{calculator.push(operator)};
 				
 				//};
 				//operator = "+";
-				display.value = "";
+				//display.value = "";
 
 				// if (isNaN(Number(calculator[calculator.length-1]))) {
 				// calculator.push(display.value);
@@ -227,173 +291,269 @@
 				// }
 				// display.value="";
 
-			if (calculator.length > 3) {
-				let firstOperand = Number(calculator[calculator.length-2]);
-				let operator = calculator[calculator.length-3];
-				let secondOperand = Number(calculator[calculator.length-4]);
+			if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
 
 				if (operator === "+") {
 					display.value = firstOperand + secondOperand;
 					result = display.value ;
-				    //calculator.push(display.value);
-					
-					// calculator.push(display.value);
+					lastDisplayIsResult = true
+					calculator = [result];
+							
 				}
 				else if (operator === "-") {
-					display.value = firstOperand - secondOperand;
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
 				}
 				else if (operator === "*"){
 					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
 				}
 				else if (operator === "/"){
-					display.value = firstOperand / secondOperand;
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
 				}
 			}
+			
+			calculator.push(operator);
+			
+					//display.value= "" ;		
 		});
 
-		function addResultIfLastDisplayIsResult( ){
-			if (lastDisplayIsResult){calculator.push(result);
-				calculator.push(operator);
-				}
-			}	
+		//function addResultIfLastDisplayIsResult( ){
+			//if (lastDisplayIsResult){calculator.push(result);
+				//calculator.push(operator);
+				//}
+			//}	
 
-		function clearDisplayIfLastDisplayIsResult() {
-			if (lastDisplayIsResult) {
-				calculator.push(result);
-				display.value  ="";
-			}
-		}
+		//function clearDisplayIfLastDisplayIsResult() {
+			//if (lastDisplayIsResult) {
+				//calculator.push(result);
+				//display.value  ="";
+			//}
+		//}
 			  		
 
 
 		minusButton.addEventListener("click", function(){
-			operator = "-";
-			//if (lastDisplayIsResult){calculator.push(result);
-				//calculator.push(operator);
-				//}
-
-				 calculator.push(display.value);
-				if (lastDisplayIsResult){
-					calculator.push(result);
-					display.value = "";
-
+			if (IsresultAfterEqual){
+				display.value= result;
+				display.value= ""
+				IsresultAfterEqual = false ;
 				}
-				else{
-					calculator.push(operator);
-				
-				};
-				display.value = "";
-			//calculator.push(display.value);
-			//operator = "-";
-			//calculator.push(operator);
-
-			if (calculator.length >= 3){
-				let firstOperand = Number(calculator[calculator.length-2]);
-				let operator = calculator[calculator.length-3];
-				let secondOperand = Number(calculator[calculator.length-4]);
-			if (operator === "-"){
-				display.value = secondOperand - firstOperand;
-				result = display.value ;
-				//calculator.push(result);
-			}
-			else if(operator === "+"){
-				display.value = firstOperand + secondOperand;
-			}
-			else if(operator === "*"){
-				display.value = firstOperand * secondOperand;
-				display.value = firstOperand * secondOperand;
-				result = display.value ;
-				calculator.push(result);
+			else if  (lastDisplayIsResult){
 				display.value="";
-			 }
-			else if(operator === "/"){
-				display.value = secondOperand / firstOperand;
+				lastDisplayIsResult = false ;
 			}
+			//else 
+			 //(!isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
+			else {calculator.push(display.value);
+			    display.value = ""
 			}
-			//clearDisplayIfLastDisplayIsResult() 
+			//else {
+				//display.value = "syntax error";
+			//};
+				operator = "-";
+				if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
+
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+							
+				}
+				else if (operator === "-") {
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+				}
+				else if (operator === "/"){
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+				}
+			}
+				calculator.push(operator);
+				
 		});
+
 	
 		multiplyButton.addEventListener("click", function(){
-			if (isNaN(Number(calculator[calculator.length-1]))) {
-				calculator.push(display.value);
-				calculator.push("*");
+			if (IsresultAfterEqual){
+				display.value= result;
+				display.value= ""
+				IsresultAfterEqual = false ;
+				}
+			else if  (lastDisplayIsResult){
+				display.value="";
+				lastDisplayIsResult = false ;
 			}
-			else
-			{
-				calculator.push("*");
+			//else if (!isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
+			else{
 				calculator.push(display.value);
-				calculator.push("*");
-			};
-			//calculator.push(display.value);
-			operator = "*";
-			//calculator.push(operator);
-			display.value="";
+			    display.value = ""
+			}
+			//else {
+				//display.value = "syntax error";
+			//};
+				operator = "*";
+			
+			if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
 
-			if (calculator.length >= 3){
-				let firstOperand = Number(calculator[calculator.length-2]);
-				let operator = calculator[calculator.length-3];
-				let secondOperand = Number(calculator[calculator.length-4]);
-			if (operator === "-"){
-				display.value = secondOperand - firstOperand;
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+							
+				}
+				else if (operator === "-") {
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true;
+					calculator = [result];
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+				}
+				else if (operator === "/"){
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+				}
+			}
+			
+					
+			    
+				calculator.push(operator);	
+		});
+
+			
+		divideButton.addEventListener("click", function(){
+			if (IsresultAfterEqual){
+				display.value= result;
+				display.value= ""
+				IsresultAfterEqual = false ;
+				}
+			else if  (lastDisplayIsResult){
+				display.value="";
+				lastDisplayIsResult = false ;
+			}
+			//else if (isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
+			else{calculator.push(display.value);
+			    display.value = ""
+			}
+			//else {
+				//display.value = "syntax error";
+			//};
+			operator = "/";
+			
+			if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
+
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+							
+				}
+				else if (operator === "-") {
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+				}
+				else if (operator === "/"){
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+				}
+			}
+			calculator.push(operator);		
+		});
+			
+		equalsButton.addEventListener("click", function(){
+	
+			calculator.push(display.value);
+			display.value = "";
+
+			if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
+
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+					IsresultAfterEqual = true;
+							
+				}
+				else if (operator === "-") {
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+					IsresultAfterEqual = true;
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+					IsresultAfterEqual = true;
+				}
+				else if (operator === "/"){
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult=true;
+					calculator = [result];
+					IsresultAfterEqual = true;
+				}
 				
 			}
-			else if(operator === "+"){
-				display.value = firstOperand + secondOperand;
-			}
-			else if(operator === "*"){
-				display.value = firstOperand * secondOperand;
-				result = display.value ;
-				calculator.push(result);
-				display.value="";
-			 }
-			else if(operator === "/"){
-				display.value = secondOperand / firstOperand;
-			}
-			}
-			//clearDisplayIfLastDisplayIsResult() 
 		});
-		divideButton.addEventListener("click", function(){
-			latestNumber = Number(display.value);
-			operator = "/";
-
-			display.value="";
-		 
-		})
-		clearButton.addEventListener("click", function(){
-		 display.value = "";
-		})
-		dotButton.addEventListener("click", function(){
-		 display.value += ".";
-		})
-		equalsButton.addEventListener("click", function(){
-		 latestNumber = Number(display.value);
 		
-
-		if (operator === "+"){
-			//secondNumber = Number(display.value);
-			//calculator.push(display.value)
-			display.value = firstNumber+secondNumber;
-			//display.value = result
-
-			//calculator.push(display.value);
-		}
-	 	else if (operator === "-"){
-	 		display.value = firstNumber-secondNumber;
-			calculator.push(diplay.value);
-	 	}
-		 	else if (operator === "*"){
-	 		display.value = firstNumber*secondNumber;
-			calculator.push(display.value);
-	 	}
-		else if (operator === "/"){
-	 		display.value = firstNumber/secondNumber;
-			calculator.push(display.value);
-	 	}
-	    } 
-	)
-	
 		
 
 </script> 
 </body>
-</html>
+</html>;
