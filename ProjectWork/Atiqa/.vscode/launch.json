@@ -13,7 +13,7 @@
                 "<node_internals>/**"
             ],
             "console": "integratedTerminal"
-            "program": "${workspaceFolder}\\Module5\\roughwork.js"
+            "program": "${workspaceFolder}\\Module5\\application.js"
         }
     ]
 }

@@ -105,12 +105,6 @@
 
 	<!-- ======== Your JavaScript Section ========= -->
 	<script>
-		// Example: handle button "1"
-		//const Button = document.getElementById("x");
-		//Button.addEventListener("click", function () {
-			//display.value += "x";
-		//});
-
 		 const display = document.getElementById("display");
 		 const oneButton = document.getElementById("btn-1");
 		 const twoButton = document.getElementById("btn-2");
@@ -130,387 +124,147 @@
 		 const dotButton = document.getElementById("btn-dot");
 		 const equalsButton = document.getElementById("btn-equals");
 
-		 //let firstNumber;
-		 //let secondNumber;
-		 //let latestNumber;
+	
 		 let operator;
 		 let result;
 		 let calculator = [];
-
 		 let lastDisplayIsResult= false;
 		 let IsresultAfterEqual = false;
 
-
-		oneButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
+		 function ButtonClicked(value) {
 			if (lastDisplayIsResult){
 				display.value="";
 				lastDisplayIsResult = false ;
 			}
-		 	display.value += "1";
+		 	display.value += value;
+		 };
+
+		 function equalAndOperator() {
+			if (IsresultAfterEqual){
+				display.value= result;
+				display.value= ""
+				IsresultAfterEqual = false ;
+			}
+			else if  (lastDisplayIsResult){
+				display.value="";
+				lastDisplayIsResult = false ;
+			}
+			else{calculator.push(display.value);
+			    display.value = ""
+			}
+		};
+
+		function functionality(){
+			if (calculator.length >=3) {
+				let firstOperand = Number(calculator[calculator.length-1]);
+				let operator = calculator[calculator.length-2];
+				let secondOperand = Number(calculator[calculator.length-3]);
+
+				if (operator === "+") {
+					display.value = firstOperand + secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
+							
+				}
+				else if (operator === "-") {
+					display.value = secondOperand - firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
+				}
+				else if (operator === "*"){
+					display.value = firstOperand * secondOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
+				}
+				else if (operator === "/"){
+					display.value = secondOperand / firstOperand;
+					result = display.value ;
+					lastDisplayIsResult = true
+					calculator = [result];
+				}
+			}
+			calculator.push(operator);
+		};
+
+
+		oneButton.addEventListener("click", function () {
+			ButtonClicked("1");
 		 });
 
 		twoButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-		 	display.value += "2";
+			ButtonClicked("2");
 		});
 
 		threeButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-			
-			display.value += "3";
+			ButtonClicked("3");
 		});
 
 		fourButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-			display.value += "4";
+			ButtonClicked("4");
 		});
 
 		fiveButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-		 	display.value += "5";
+			ButtonClicked("5");
 		});
 
 		sixButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-			display.value += "6";
+			ButtonClicked("6");
 		});
-		 sevenButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-		 	display.value += "7";
+
+		sevenButton.addEventListener("click", function () {
+			ButtonClicked("7");
 		 });
 
 		eightButton.addEventListener("click", function () {
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-		 	display.value += "8";
+			ButtonClicked("8");
 		});
 
 		nineButton.addEventListener("click", function(){
-			//clearDisplayIfLastDisplayIsResult();
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-		 	display.value += "9";
-		})
+			ButtonClicked("9");
+		});
 
 		zeroButton.addEventListener("click", function(){
-			if (lastDisplayIsResult){
-			display.value="";
-			lastDisplayIsResult = false ;
-			}
-			display.value += "0";
-		})
+			ButtonClicked("0");
+		});
 
 		clearButton.addEventListener("click", function(){
 		  display.value= "";
 		  calculator =[];
-		})
-
-		dotButton.addEventListener("click", function(){
-		 display.value+= "."; 
-		 })
-
-		plusButton.addEventListener("click", function(){
-
-			if (IsresultAfterEqual){
-				display.value= result;
-				display.value= ""
-				IsresultAfterEqual = false ;
-				}
-			else if  (lastDisplayIsResult){
-				display.value="";
-				lastDisplayIsResult = false ;
-			}
-			//else if (isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
-			else{calculator.push(display.value);
-			    display.value = ""
-			}
-			//else {
-				//display.value = "syntax error";
-				
-			//}
-			
-		
-			operator = "+";
-				//if (lastDisplayIsResult){calculator.push(result);
-				//calculator.push(operator);
-				
-				//}
-
-				//calculator.push(display.value);
-
-
-				//if (lastDisplayIsResult){
-					//display.value="";
-					//lastDisplayIsResult = false ;
-				//}
-				//else{calculator.push(operator)};
-				
-				//};
-				//operator = "+";
-				//display.value = "";
-
-				// if (isNaN(Number(calculator[calculator.length-1]))) {
-				// calculator.push(display.value);
-				// calculator.push("+");
-				// }
-				// else
-				// {
-				// calculator.push("+");
-				// calculator.push(display.value);
-				// calculator.push("+");
-				// }
-				// display.value="";
-
-			if (calculator.length >=3) {
-				let firstOperand = Number(calculator[calculator.length-1]);
-				let operator = calculator[calculator.length-2];
-				let secondOperand = Number(calculator[calculator.length-3]);
-
-				if (operator === "+") {
-					display.value = firstOperand + secondOperand;
-					result = display.value ;
-					lastDisplayIsResult = true
-					calculator = [result];
-							
-				}
-				else if (operator === "-") {
-					display.value = secondOperand - firstOperand;
-					result = display.value ;
-					lastDisplayIsResult = true
-					calculator = [result];
-				}
-				else if (operator === "*"){
-					display.value = firstOperand * secondOperand;
-					result = display.value ;
-					lastDisplayIsResult = true
-					calculator = [result];
-				}
-				else if (operator === "/"){
-					display.value = secondOperand / firstOperand;
-					result = display.value ;
-					lastDisplayIsResult = true
-					calculator = [result];
-				}
-			}
-			
-			calculator.push(operator);
-			
-					//display.value= "" ;		
 		});
 
-		//function addResultIfLastDisplayIsResult( ){
-			//if (lastDisplayIsResult){calculator.push(result);
-				//calculator.push(operator);
-				//}
-			//}	
+		dotButton.addEventListener("click", () =>  display.value+= "." ); 
 
-		//function clearDisplayIfLastDisplayIsResult() {
-			//if (lastDisplayIsResult) {
-				//calculator.push(result);
-				//display.value  ="";
-			//}
-		//}
-			  		
-
+		plusButton.addEventListener("click", function() {
+			 equalAndOperator()
+			
+			operator = "+";
+			functionality();
+		});
 
 		minusButton.addEventListener("click", function(){
-			if (IsresultAfterEqual){
-				display.value= result;
-				display.value= ""
-				IsresultAfterEqual = false ;
-				}
-			else if  (lastDisplayIsResult){
-				display.value="";
-				lastDisplayIsResult = false ;
-			}
-			//else 
-			 //(!isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
-			else {calculator.push(display.value);
-			    display.value = ""
-			}
-			//else {
-				//display.value = "syntax error";
-			//};
-				operator = "-";
-				if (calculator.length >=3) {
-				let firstOperand = Number(calculator[calculator.length-1]);
-				let operator = calculator[calculator.length-2];
-				let secondOperand = Number(calculator[calculator.length-3]);
-
-				if (operator === "+") {
-					display.value = firstOperand + secondOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-							
-				}
-				else if (operator === "-") {
-					display.value = secondOperand - firstOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-				}
-				else if (operator === "*"){
-					display.value = firstOperand * secondOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-				}
-				else if (operator === "/"){
-					display.value = secondOperand / firstOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-				}
-			}
-				calculator.push(operator);
-				
+			equalAndOperator();
+			operator = "-";
+			functionality();
 		});
 
 	
 		multiplyButton.addEventListener("click", function(){
-			if (IsresultAfterEqual){
-				display.value= result;
-				display.value= ""
-				IsresultAfterEqual = false ;
-				}
-			else if  (lastDisplayIsResult){
-				display.value="";
-				lastDisplayIsResult = false ;
-			}
-			//else if (!isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
-			else{
-				calculator.push(display.value);
-			    display.value = ""
-			}
-			//else {
-				//display.value = "syntax error";
-			//};
-				operator = "*";
-			
-			if (calculator.length >=3) {
-				let firstOperand = Number(calculator[calculator.length-1]);
-				let operator = calculator[calculator.length-2];
-				let secondOperand = Number(calculator[calculator.length-3]);
-
-				if (operator === "+") {
-					display.value = firstOperand + secondOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-							
-				}
-				else if (operator === "-") {
-					display.value = secondOperand - firstOperand;
-					result = display.value ;
-					lastDisplayIsResult = true;
-					calculator = [result];
-				}
-				else if (operator === "*"){
-					display.value = firstOperand * secondOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-				}
-				else if (operator === "/"){
-					display.value = secondOperand / firstOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-				}
-			}
-			
-					
-			    
-				calculator.push(operator);	
+			equalAndOperator();
+			operator = "*";
+			functionality();
 		});
 
 			
 		divideButton.addEventListener("click", function(){
-			if (IsresultAfterEqual){
-				display.value= result;
-				display.value= ""
-				IsresultAfterEqual = false ;
-				}
-			else if  (lastDisplayIsResult){
-				display.value="";
-				lastDisplayIsResult = false ;
-			}
-			//else if (isNaN(Number(calculator[calculator.length-1] || (calculator[calculator.length-1]) === ""))){
-			else{calculator.push(display.value);
-			    display.value = ""
-			}
-			//else {
-				//display.value = "syntax error";
-			//};
+			equalAndOperator();
 			operator = "/";
-			
-			if (calculator.length >=3) {
-				let firstOperand = Number(calculator[calculator.length-1]);
-				let operator = calculator[calculator.length-2];
-				let secondOperand = Number(calculator[calculator.length-3]);
-
-				if (operator === "+") {
-					display.value = firstOperand + secondOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-							
-				}
-				else if (operator === "-") {
-					display.value = secondOperand - firstOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-				}
-				else if (operator === "*"){
-					display.value = firstOperand * secondOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-				}
-				else if (operator === "/"){
-					display.value = secondOperand / firstOperand;
-					result = display.value ;
-					lastDisplayIsResult=true;
-					calculator = [result];
-				}
-			}
-			calculator.push(operator);		
+			functionality();
 		});
 			
 		equalsButton.addEventListener("click", function(){
-	
 			calculator.push(display.value);
 			display.value = "";
 
@@ -525,7 +279,6 @@
 					lastDisplayIsResult=true;
 					calculator = [result];
 					IsresultAfterEqual = true;
-							
 				}
 				else if (operator === "-") {
 					display.value = secondOperand - firstOperand;
@@ -548,7 +301,6 @@
 					calculator = [result];
 					IsresultAfterEqual = true;
 				}
-				
 			}
 		});
 		

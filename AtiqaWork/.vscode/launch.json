@@ -13,7 +13,7 @@
                 "<node_internals>/**"
             ],
             "console": "integratedTerminal",
-            "program": "${workspaceFolder}\\lop.js"
+            "program": "${workspaceFolder}\\newarray.js"
         }
     ]
 }
