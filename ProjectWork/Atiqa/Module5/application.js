@@ -13,22 +13,36 @@ function showMenu() {
 
 };
 
-function getInput(promptText, validator){
+    // employee.department =getInput("Department : " , isStringValid);
+    // let yearOfBirth = getInput("Enter year of birth (1950-2008): ",isYearValid );
+    // let  monthOfBirth = getInput("Enter Month of birth(1-12: ", isMonthValid);
+
+function getInput(promptText, whichFunctionToCall){
     let value = prompt(promptText)
-    if(validator && !validator(value)){
+
+    if(
+            whichFunctionToCall 
+            && ! whichFunctionToCall(value)
+    ) {
         console.error("invalid input");
         Process.exit(1);
     }
+
     return value;
 }
 
-const isStringValid = function(input){
+const isStringValid = function(input) {
     return(input) ? true :false ;
 }
 
-const isYearValid = function(input){
-    let  numValue = Number(input);
-    if(!Number.isInteger(numValue) || numValue<1950|| numValue>2008){
+const isYearValid = function(input) {
+    let numValue = Number(input);
+
+    if(
+            ! Number.isInteger(numValue)
+            || numValue<1950
+            || numValue>2008
+    ){
         return false;
     }
     else{

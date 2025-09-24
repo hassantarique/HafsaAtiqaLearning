@@ -1,6 +1,9 @@
 import createPrompt from 'prompt-sync';
 let prompt = createPrompt();
 
+import employees from "./data.json" with {type: "json"};
+//console.log(employees);
+
 let employee = {};
 
 let firstName = prompt("First Name: ");

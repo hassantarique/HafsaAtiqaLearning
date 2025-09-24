@@ -54,3 +54,13 @@ if (evenNumbera%2 == 0){
 evenNumbera++;
 }
 console.log(suma);
+
+
+console.log (`__________`);
+
+
+     
+import data
+
+
+

@@ -1,13 +1,18 @@
 // Import Sample Data
-import employees from './data.json' assert { type: 'json' }
+import employees from './data.json' with { type: 'json' }
 
 import createPrompt from 'prompt-sync';
 let prompt = createPrompt();
 
 const logEmployee = (employee) => {
+
+  
+
   Object.entries(employee).forEach(entry => {
     console.log(`${entry[0]}: ${entry[1]}`);
   });
+
+
 }
 
 function getInput(promptText, validator, transformer) {
@@ -52,6 +57,9 @@ function listEmployees() {
     logEmployee(e);
     prompt('Press enter to continue...');
   });
+
+
+
   console.log(`Employee list completed`);
 }
 
